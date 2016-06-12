@@ -14,6 +14,7 @@ namespace webview
         public string action;
         public bool debug;
         public bool plain;
+        public bool scrollbar;
         public string icon;
         public Config ()
         {
@@ -25,6 +26,8 @@ namespace webview
             debug = (value.ToLower()=="true" || value== "1");
             value = file.Value("plain", "false");
             plain = (value.ToLower() == "true" || value == "1");
+            value = file.Value("scrollbar", "true");
+            scrollbar = (value.ToLower() == "true" || value == "1");
             icon = file.Value ("icon", "favico.ico");
         }
     }
