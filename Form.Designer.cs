@@ -84,7 +84,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 81.76471F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(617, 166);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(150, 46);
             this.tableLayoutPanel1.TabIndex = 6;
             // 
             // textboxDebug
@@ -96,7 +96,7 @@
             this.textboxDebug.ForeColor = System.Drawing.Color.White;
             this.textboxDebug.Location = new System.Drawing.Point(3, 32);
             this.textboxDebug.Name = "textboxDebug";
-            this.textboxDebug.Size = new System.Drawing.Size(611, 131);
+            this.textboxDebug.Size = new System.Drawing.Size(144, 11);
             this.textboxDebug.TabIndex = 6;
             this.textboxDebug.Text = "";
             // 

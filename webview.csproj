@@ -56,9 +56,11 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Tool">
+      <HintPath>..\Tool\Tool\bin\Release\Tool.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IniFile.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Form.cs">
       <SubType>Form</SubType>

@@ -24,10 +24,11 @@ namespace webview
             config = new Config();
             if (config.debug) split.Panel2Collapsed = false;
             path = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\";
-            Debug("config: " + config.file.Path + " [" + config.file.Default + "]");
-            Debug("config.exec.command: " + (config.command));
-            Debug("config.exec.action: " + config.action);
-            Debug("config.misc.debug: " + config.debug);
+            Debug("config: " + config.file.path);
+            Debug("config.command: " + config.command);
+            Debug("config.action: " + config.action);
+            Debug("config.debug: " + config.debug);
+            Debug("config.plain: " + config.plain);
         }
         public void Debug (string message)
         {
@@ -66,7 +67,7 @@ namespace webview
         }
         public void Browser_Load (string command, string action, string query)
         {
-            if (command!="")
+            if (command!=null && command!="")
             {
                 string parameters;
                 command = command.Trim();
@@ -106,7 +107,7 @@ namespace webview
                     string line = process.StandardOutput.ReadLine();
                     if (line != null)
                     {
-                        result += line;
+                        result += line+ Environment.NewLine;
                     }
                 }
                 process.WaitForExit();
@@ -116,6 +117,8 @@ namespace webview
                     //browser.DocumentText = result;
                     if (!config.plain)
                     {
+                        Debug("HTML mode");
+
                         HtmlAgilityPack.HtmlDocument source = new HtmlAgilityPack.HtmlDocument();
                         source.LoadHtml(result);
 
@@ -130,9 +133,11 @@ namespace webview
                     }
                     else
                     {
+                        Debug("Plain mode");
                         dynamic document = browser.Document.DomDocument;
                         document.open();
-                        document.write(result.Replace(Environment.NewLine,"<br>"));
+                        document.write("<pre>" + result + "<pre>");
+                        //document.write(result.Replace(Environment.NewLine,"<br>"));
                         document.close();
                     }
 
@@ -157,7 +162,7 @@ namespace webview
             this.Text = path;
             try
             {
-                this.Icon = Icon.ExtractAssociatedIcon(path+"favico.ico");
+                this.Icon = Icon.ExtractAssociatedIcon(path+config.icon);
             }
             catch (FileNotFoundException exception)
             {
